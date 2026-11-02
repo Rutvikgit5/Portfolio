@@ -3,7 +3,9 @@
 ## What is in this folder
 
 - `index.html` is the whole website. Open it in any text editor to change text, projects or links.
-- `api/films.js` is a small function that reads your public Letterboxd diary and feeds the Interests and Stats pages.
+- `api/films.js` reads your public Letterboxd diary and feeds the Recently watched posters on the Interests page.
+- `api/stats.js` is the counter behind Total views and Appreciation count on the Stats page.
+- `media/` holds your photos and slides.
 
 ## Before you deploy
 
@@ -24,9 +26,18 @@ Open `index.html` and find the `CONFIG` block near the top of the script.
 ## After you deploy, test these
 
 1. Open the site on your phone and your laptop.
-2. Open `your-address/api/films`. You should see JSON with your recent films. If you see `Feed unavailable`, Letterboxd is blocking the request. The Interests page then shows your Letterboxd link instead of the diary.
+2. Open `your-address/api/films`. You should see JSON with your recent films, and the Interests page shows the five latest posters.
 3. Send yourself a message through the contact form.
 4. Try the search (Ctrl or Cmd plus K), the theme options and the Back to projects link.
+
+## Turn on the view and appreciation counters (free)
+
+1. In Vercel open your project, then the Storage tab, then Create Database.
+2. Choose Upstash Redis from the Marketplace list and pick the Free plan.
+3. Connect it to your portfolio project. Vercel adds the keys on its own.
+4. Redeploy once (Deployments tab, the three dots, Redeploy). The Stats page then shows live counts.
+
+Views count once per browser. The heart button works once per browser.
 
 ## Adding photos and slides later
 
@@ -38,4 +49,4 @@ Create a `media` folder, upload your images, then add them to a project in `inde
 ## Good to know
 
 - Vercel's free Hobby plan is for personal, non-commercial use. A portfolio is fine. If you later use the site to sell something or promote a company, check Vercel's terms.
-- The film feed code has not been tested against your real Letterboxd account. Check it with step 2 above.
+- Your repo is public, so anything in `index.html` can be read by anyone. Never paste passwords or private keys into it. The form access key is fine because it can only send messages to your inbox.

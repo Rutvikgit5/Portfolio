@@ -33,12 +33,17 @@ module.exports = async function handler(req, res) {
         const date = tag(block, "letterboxd:watchedDate");
         if (!title || !date) return null;
         const year = parseInt(tag(block, "letterboxd:filmYear"), 10);
+        const desc = block.match(/<description>\s*<!\[CDATA\[([\s\S]*?)\]\]>/);
+        const img = desc ? desc[1].match(/<img[^>]*src="([^"]+)"/) : null;
+        const link = tag(block, "link");
         const rating = parseFloat(tag(block, "letterboxd:memberRating"));
         return {
           t: title,
           y: isNaN(year) ? "" : year,
           r: isNaN(rating) ? null : rating,
-          d: date
+          d: date,
+          p: img ? img[1] : "",
+          l: /^https:\/\/letterboxd\.com\//.test(link) ? link : ""
         };
       })
       .filter(Boolean)
