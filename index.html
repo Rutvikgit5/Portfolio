@@ -103,9 +103,15 @@ button, input, select { font: inherit; color: inherit; }
 main:focus { outline: none; }
 
 .wrap {
-  max-width: 1240px; margin: 0 auto;
-  padding-left: max(16px, env(safe-area-inset-left, 0px));
-  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  max-width: none; margin: 0;
+  padding-left: max(32px, env(safe-area-inset-left, 0px));
+  padding-right: max(32px, env(safe-area-inset-right, 0px));
+}
+@media (max-width: 860px) {
+  .wrap {
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
 }
 
 /* top bar */
@@ -238,6 +244,16 @@ ul.plain { margin: 0; padding-left: 1.2rem; display: flex; flex-direction: colum
 .ints div { border-top: 2px solid var(--line); padding-top: 12px; }
 .ints h3 { margin: 6px 0 4px; }
 .ints p { margin: 0; color: var(--muted); }
+.plane-btn { display: inline-flex; align-items: center; gap: 10px; margin-top: 14px; padding: 8px 18px 8px 10px; border-radius: 999px; border: 1px solid var(--glass-brd); cursor: pointer;
+  background: linear-gradient(180deg, var(--glass-top), var(--glass-bot)); color: var(--fg); font-weight: 600; box-shadow: inset 0 1px 0 var(--glass-hi), 0 10px 24px -12px var(--glass-shadow); }
+.plane-btn:hover { border-color: var(--muted); }
+.plane-btn svg { width: 40px; height: 40px; animation: plane-bob 3.4s ease-in-out infinite; }
+@keyframes plane-bob { 50% { transform: translate(3px, -4px) rotate(-5deg); } }
+.plane-note { margin: 8px 0 0; font-size: 0.9rem; }
+.bm-sky { position: fixed; inset: 0; z-index: 2000; overflow: hidden; pointer-events: auto; }
+.bm-sky-bg { position: absolute; inset: 0; background: linear-gradient(180deg, #8fc7f2, #cfe9fb); opacity: 0; }
+.bm-cloud { position: absolute; will-change: transform; filter: drop-shadow(0 6px 8px rgba(40, 90, 140, 0.25)); }
+@media (prefers-reduced-motion: reduce) { .plane-btn svg { animation: none; } }
 .gtr { position: relative; margin-top: 14px; padding: 10px 14px 10px 0; border-radius: 14px; overflow: hidden; touch-action: none; user-select: none; -webkit-user-select: none; cursor: pointer;
   background:
     radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.22) 0 5px, transparent 6px),
@@ -509,7 +525,6 @@ footer .wrap { padding-block: 22px; text-align: center; }
       ],
       media: [
         { src: "media/ambrosia/orientation-1.jpg", group: "Club orientation", cap: "The club team at orientation" },
-        { src: "media/ambrosia/orientation-2.jpg", group: "Club orientation", cap: "Orientation session in the lecture hall" },
         { src: "media/ambrosia/orientation-3.jpg", group: "Club orientation", cap: "Students gathering around an activity" },
         { src: "media/ambrosia/flora-film-1.jpg", group: "Flora & Film", cap: "Polaroid cover prints from the event" },
         { src: "media/ambrosia/flora-film-2.jpg", group: "Flora & Film", cap: "Building framed keepsakes" },
@@ -658,10 +673,10 @@ footer .wrap { padding-block: 22px; text-align: center; }
       id: "bispecific", group: "researched", status: "Completed",
       title: "VEGF-A and EGFR bispecific antibody",
       kicker: "Academic project · Aug 2024",
-      summary: "A design study for one antibody that blocks both VEGF-A and EGFR, aimed at pancreatic cancer.",
+      summary: "A design study for one antibody that blocks both VEGF-A and EGFR, aimed at non-small cell lung cancer (NSCLC).",
       did: [
-        "Built the case for a bispecific: EGFR is overexpressed in over 90% of pancreatic ductal adenocarcinomas and VEGF in about two thirds, and the two pathways feed each other, so blocking one alone invites resistance.",
-        "Ran VEGF-A and EGFR pathway analysis across patient datasets, including survival of high versus low expression groups, to choose the targets and binding domains.",
+        "Built the case for a bispecific in non-small cell lung cancer (NSCLC): EGFR and VEGF are both well-studied targets there, and the two pathways feed each other, so blocking one alone invites resistance.",
+        "Analysed the VEGF-A and EGFR pathways to choose the targets and binding domains.",
         "Designed the molecule from the Fab regions of two approved antibodies, bevacizumab (VEGF-A) and cetuximab (EGFR), joined by a linker on a shared constant region.",
         "Mapped the build: in silico docking, expression constructs with a self-cleaving peptide between the light and heavy chains, construct screening, and transfection into CHO cells.",
         "Compared bispecifics with monoclonal antibodies: a bispecific can block two pathways or pull immune cells to the tumour, but some designs carry risks such as cytokine release syndrome.",
@@ -669,8 +684,7 @@ footer .wrap { padding-block: 22px; text-align: center; }
         "Retrieved and curated antibody sequences from PDB and UniProt to screen high-affinity candidates."
       ],
       tools: ["PDB", "UniProt", "Molecular docking", "Antibody engineering", "Fab design", "Expression construct design", "CHO cell expression", "Pathway and survival analysis"],
-      numbers: [[">90%", "of pancreatic tumours overexpress EGFR"], ["2", "approved antibodies as parents"]],
-      deck: { title: "Selected slides from the team presentation", pages: ["media/decks/bispecific-1.jpg", "media/decks/bispecific-2.jpg", "media/decks/bispecific-3.jpg", "media/decks/bispecific-4.jpg", "media/decks/bispecific-5.jpg", "media/decks/bispecific-6.jpg", "media/decks/bispecific-7.jpg", "media/decks/bispecific-8.jpg", "media/decks/bispecific-9.jpg"] },
+      numbers: [["2", "approved antibodies as parents"]],
       note: "A design and in silico study. The molecule was not built in a lab.",
       noteLabel: "Scope"
     },
@@ -755,13 +769,13 @@ footer .wrap { padding-block: 22px; text-align: center; }
 
   var INTERESTS = [
     ["Music", "Carnatic music", "Eight years of it."],
-    ["Debate", "Model United Nations", "Five conferences between 2018 and 2021: CVMUN 2018, DRSMUN 2019 (honourable mention), BITSMUN 2020 (verbal commendation), Bharatiya Vidya Bhavan Jubilee Hills MUN 2021 (verbal commendation) and an online MUN during Covid. It gave me exposure, the confidence to speak better, and a way to keep improving. An unforgettable experience."],
+    ["Debate", "Model United Nations", "Five conferences between 2018 and 2021: CVMUN 2018, DRSMUN 2019 (honourable mention), BITSMUN 2020 (verbal commendation), BVBJH MUN 2021 at Bharatiya Vidya Bhavan's Public School, Jubilee Hills (verbal commendation) and an online MUN during Covid. It gave me exposure, the confidence to speak better, and a way to keep improving. An unforgettable experience."],
     ["Film", "Movies", "I watch a lot of them and log them on Letterboxd."],
     ["Outdoors", "Trekking and hikes", "Trails whenever I can get to them."],
     ["Food", "Cooking", "Learning my way around the kitchen."],
     ["Reading", "Books", "Getting back into reading."],
     ["Music", "Guitar", "Next on the list to learn. Until then, there is this one.", "guitar"],
-    ["Someday", "The bucket list", "Long, and I am working through it."]
+    ["Someday", "The bucket list", "Long, and I am working through it. Tap the plane to open the map.", "plane"]
   ];
 
   var $ = function (s) { return document.querySelector(s); };
@@ -878,6 +892,95 @@ footer .wrap { padding-block: 22px; text-align: center; }
       s.connect(g); g.connect(bus); s.start();
     } catch (e) {}
   }
+  /* Bucket-list map launcher. Only this small piece loads with the page; the map itself
+     (media/map/bucket-map.js) is fetched the first time someone taps the plane. */
+  function planeHtml() {
+    return "<button type=\"button\" class=\"plane-btn\" id=\"bm-open\" aria-haspopup=\"dialog\">" +
+      "<svg viewBox=\"0 0 64 64\" aria-hidden=\"true\"><g transform=\"rotate(-38 32 32)\"><path d=\"M32 5c3.2 0 5.2 3.2 5.2 8.5V27l21.3 13v6.2L37.2 38.6v11.2l7.2 5.3v5L32 57.6 19.6 60v-5l7.2-5.3V38.6L5.5 46.2V40l21.3-13V13.5C26.8 8.2 28.8 5 32 5z\" fill=\"#f5f7fb\" stroke=\"#1f2a44\" stroke-width=\"2.6\" stroke-linejoin=\"round\"/>" +
+      "<path d=\"M32 5c-3.2 0-5.2 3.2-5.2 8.5h10.4C37.2 8.2 35.2 5 32 5z\" fill=\"#e5484d\"/><path d=\"M27 24.5h10M27 29h10\" stroke=\"#9fb4d6\" stroke-width=\"2.2\" stroke-linecap=\"round\"/></g></svg>" +
+      "<span>Open the world map</span></button><p class=\"plane-note muted\" id=\"bm-msg\" role=\"status\"></p>";
+  }
+  var bmLoad = null, bmBusy = false, bmOpen = false, bmBtn = null, bmReturn = null;
+  function bmScript() {
+    if (!bmLoad) bmLoad = new Promise(function (ok, no) {
+      if (window.BucketMap) return ok(window.BucketMap);
+      var sc = document.createElement("script"); sc.src = "media/map/bucket-map.js"; sc.async = true;
+      sc.onload = function () { ok(window.BucketMap); };
+      sc.onerror = function () { bmLoad = null; no(new Error("map")); };
+      document.head.appendChild(sc);
+    });
+    return bmLoad;
+  }
+  function bmReduced() { return window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches; }
+  var CLOUD = "<svg viewBox=\"0 0 220 120\" width=\"100%\" height=\"100%\" aria-hidden=\"true\"><g fill=\"#dbe8f6\"><circle cx=\"58\" cy=\"80\" r=\"36\"/><circle cx=\"108\" cy=\"62\" r=\"46\"/><circle cx=\"160\" cy=\"80\" r=\"38\"/><rect x=\"42\" y=\"80\" width=\"134\" height=\"34\" rx=\"17\"/></g><g fill=\"#fff\"><circle cx=\"58\" cy=\"72\" r=\"34\"/><circle cx=\"108\" cy=\"52\" r=\"44\"/><circle cx=\"160\" cy=\"72\" r=\"36\"/><rect x=\"42\" y=\"72\" width=\"134\" height=\"30\" rx=\"15\"/></g></svg>";
+  function bmSky() {
+    var sky = document.createElement("div"); sky.className = "bm-sky"; sky.setAttribute("aria-hidden", "true");
+    var bg = document.createElement("div"); bg.className = "bm-sky-bg"; sky.appendChild(bg);
+    var clouds = [], rows = 6, cols = 5, i, j;
+    for (i = 0; i < rows; i++) for (j = 0; j < cols; j++) {
+      var c = document.createElement("div"); c.className = "bm-cloud";
+      var w = 38 + ((i * 7 + j * 11) % 14); // vw
+      c.style.width = w + "vw"; c.style.height = (w * 0.55) + "vw";
+      c.style.left = (j * 24 - 14 + ((i % 2) ? 8 : 0)) + "vw"; c.style.top = (i * (100 / (rows - 1)) - 14) + "vh";
+      c.innerHTML = CLOUD; sky.appendChild(c); clouds.push({ el: c, dir: (j + i) % 2 ? 1 : -1, d: (i * cols + j) * 14 });
+    }
+    document.body.appendChild(sky);
+    return { sky: sky, bg: bg, clouds: clouds };
+  }
+  function bmWait(anims) { return Promise.all(anims.map(function (a) { return a.finished ? a.finished.catch(function () {}) : Promise.resolve(); })); }
+  function bmCover(S) { // clouds sweep in from both sides until the screen is white
+    if (!S.sky.animate || bmReduced()) { S.bg.style.opacity = 1; return Promise.resolve(); }
+    var an = [S.bg.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 650, fill: "forwards", easing: "ease-in" })];
+    S.clouds.forEach(function (c) { an.push(c.el.animate([{ transform: "translateX(" + (c.dir * 120) + "vw) scale(.7)" }, { transform: "translateX(0) scale(1)" }], { duration: 650, delay: c.d, fill: "backwards", easing: "cubic-bezier(.2,.7,.2,1)" })); });
+    return bmWait(an);
+  }
+  function bmPart(S) { // then they part to reveal what is underneath
+    var done = function () { if (S.sky.parentNode) S.sky.parentNode.removeChild(S.sky); };
+    if (!S.sky.animate || bmReduced()) { done(); return Promise.resolve(); }
+    S.sky.style.pointerEvents = "none";
+    var an = [S.bg.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 700, fill: "forwards", easing: "ease-out" })];
+    S.clouds.forEach(function (c) { an.push(c.el.animate([{ transform: "translateX(0) scale(1)", opacity: 1 }, { transform: "translateX(" + (c.dir * 120) + "vw) scale(1.1)", opacity: 1 }], { duration: 750, delay: c.d * 0.6, fill: "forwards", easing: "cubic-bezier(.5,0,.8,.4)" })); });
+    return bmWait(an).then(done);
+  }
+  function bmFlyPlane(btn) {
+    var svg = btn && btn.querySelector("svg"); if (!svg || !svg.animate || bmReduced()) return;
+    svg.animate([{ transform: "translate(0,0) scale(1) rotate(0)", opacity: 1 }, { transform: "translate(120px,-90px) scale(3.2) rotate(-12deg)", opacity: 0 }], { duration: 650, easing: "cubic-bezier(.5,0,.9,.4)", fill: "forwards" });
+  }
+  function bmLandPlane(btn) {
+    var svg = btn && btn.querySelector && btn.querySelector("svg"); if (!svg || !svg.animate || bmReduced()) return;
+    svg.getAnimations().forEach(function (a) { a.cancel(); });
+    svg.animate([{ transform: "translate(-80px,50px) scale(.4)", opacity: 0 }, { transform: "translate(0,0) scale(1)", opacity: 1 }], { duration: 600, easing: "ease-out" });
+  }
+  function bmSay(btn, t) { var m = document.getElementById("bm-msg"); if (m) m.textContent = t || ""; }
+  function bmLock(on) { document.documentElement.style.overflow = on ? "hidden" : ""; }
+  function bmOpenMap(btn) {
+    if (bmBusy || bmOpen) return; bmBusy = true; bmBtn = btn; bmSay(btn, "");
+    var loading = bmScript(), S = bmSky(); bmFlyPlane(btn);
+    bmCover(S).then(function () { return loading; }).then(function (M) {
+      bmReturn = document.activeElement; bmLock(true);
+      M.mount({ onClose: bmCloseMap }); bmOpen = true;
+      return bmPart(S);
+    }).catch(function () {
+      bmLandPlane(btn); bmSay(btn, "The map could not load. Please check your connection and try again."); return bmPart(S);
+    }).then(function () { bmBusy = false; });
+  }
+  function bmCloseMap() {
+    if (bmBusy || !bmOpen) return; bmBusy = true;
+    var S = bmSky();
+    bmCover(S).then(function () {
+      if (window.BucketMap) window.BucketMap.unmount();
+      bmOpen = false; bmLock(false);
+      var b = document.getElementById("bm-open"); bmLandPlane(b); if (b) b.focus({ preventScroll: true });
+      return bmPart(S);
+    }).then(function () { bmBusy = false; });
+  }
+  function bindBucket() {
+    var b = document.getElementById("bm-open"); if (!b) return;
+    var warm = function () { bmScript().catch(function () {}); };
+    b.addEventListener("pointerenter", warm); b.addEventListener("focus", warm); b.addEventListener("touchstart", warm, { passive: true });
+    b.addEventListener("click", function () { bmOpenMap(b); });
+  }
+
   function bindGuitar() {
     var box = $("#gtr"); if (!box) return;
     var btns = [].slice.call(box.querySelectorAll(".gs")), down = false, last = -1;
@@ -954,7 +1057,7 @@ footer .wrap { padding-block: 22px; text-align: center; }
         return "<a href=\"#project-" + p.id + "\"><span class=\"label\">" + g + "</span><h3>" + p.title + "</h3><p>" + p.summary + "</p></a>";
       }).join("");
       return head("Rutvik Gannarapu", "Scientist by training. Operator by habit.") +
-        "<p class=\"lede\">I am a biotechnology graduate who runs things and builds things. I have led student organisations and events, worked on clinical genomics pipelines and vaccine process development, and I am working towards a career in precision and longevity medicine.</p>" +
+        "<p class=\"lede\">I am a biotechnology graduate who runs things and builds things. I have led student organisations and events, worked on clinical genomics pipelines and vaccine process development, and I am working towards becoming an entrepreneur in precision and longevity medicine. For now that means learning how organisations really run, building leadership by doing, and sharpening my technical skills where I need them.</p>" +
         "<div class=\"btns\"><a class=\"btn primary\" href=\"#projects\">See my projects</a><a class=\"btn\" href=\"#contact\">Get in touch</a></div>" +
         "<div class=\"feat\">" + feat + "</div>" + pager("home");
     },
@@ -963,12 +1066,14 @@ footer .wrap { padding-block: 22px; text-align: center; }
         "<div class=\"prose\">" +
         "<p>I studied biotechnology at Mahindra University from 2022 to 2026, with coursework in computational biology, omics technologies, precision medicine and bioinformatics. Alongside it I ran student organisations, which taught me how to plan events, bring partners in and keep a team moving.</p>" +
         "<p>My recent work sits between the lab and the computer. I developed and validated sequencing pipelines in a clinical genomics lab, contributed as an author to a genetics study that has been submitted to a journal, and worked on vaccine process optimisation at a manufacturer.</p>" +
-        "<p>I am teaching myself to code and build small tools with an AI assistant, and I say so on each project. Long term, I want to work on precision and longevity medicine. Outside work you will find me with Carnatic music, on a trail or in front of a film.</p>" +
+        "<p>I am teaching myself to code and build small tools with an AI assistant, and I say so on each project. Long term, I want to build in precision and longevity medicine as an entrepreneur, so I am gaining experience in leadership, in building things from scratch and in how organisations are run, while building technical skills where they are needed.</p>" +
+        "<p>The companies I admire, Neko Health, Biopeak, Ultrahuman, Temple and DeepMind, combine measurement, data and operations. I have worked on pieces of each: sequencing pipelines in a clinical lab, vaccine process work, and running teams and events. They inspire what I hope to build one day.</p>" +
+        "<p>Outside work you will find me at a new community event, playing board games, learning a new dish or trying a new cuisine, out on a hike or a trail, watching a film, or reading Substack posts and articles on ideas in my field and well outside it.</p>" +
         "</div>" +
         "<div class=\"nums\">" +
         "<div><b>6+</b><span>flagship Ambrosia events in 2023–24</span></div>" +
         "<div><b>15+</b><span>events at the Erudite literature festival</span></div>" +
-        "<div><b>200+</b><span>students reached across 15 colleges</span></div>" +
+        "<div><b>1000+</b><span>students and participants across club events</span></div>" +
         "<div><b>1</b><span>genetics study submitted to a journal</span></div>" +
         "</div>" + pager("about");
     },
@@ -1008,7 +1113,7 @@ footer .wrap { padding-block: 22px; text-align: center; }
     interests: function () {
       return head("Interests", "What I do when I am not in a lab.") +
         "<div class=\"ints\">" + INTERESTS.map(function (x) {
-          return "<div><span class=\"label\">" + x[0] + "</span><h3>" + x[1] + "</h3><p>" + x[2] + "</p>" + (x[3] === "guitar" ? guitarHtml() : "") + "</div>";
+          return "<div><span class=\"label\">" + x[0] + "</span><h3>" + x[1] + "</h3><p>" + x[2] + "</p>" + (x[3] === "guitar" ? guitarHtml() : x[3] === "plane" ? planeHtml() : "") + "</div>";
         }).join("") + "</div>" + filmBlock() + pager("interests");
     },
     stats: function () {
@@ -1030,7 +1135,7 @@ footer .wrap { padding-block: 22px; text-align: center; }
         "<p class=\"fine\" id=\"cf-status\" role=\"status\" aria-live=\"polite\"></p></form>" : "";
       var rows = "";
       if (CONFIG.linkedin) rows += "<div class=\"r\"><span class=\"label\">LinkedIn</span><a class=\"v\" href=\"" + esc(CONFIG.linkedin) + "\" target=\"_blank\" rel=\"noopener\">" + esc(CONFIG.linkedin.replace(/^https?:\/\//, "")) + "</a></div>";
-      rows += "<div class=\"r\"><span class=\"label\">Based in</span><span class=\"v\">India</span></div>";
+      rows += "<div class=\"r\"><span class=\"label\">Based in</span><span class=\"v\">Hyderabad, India</span></div>";
       return head("Contact", "Say hello.") + lead + form + "<div class=\"rows\" style=\"margin-top:28px\">" + rows + "</div>" + pager("contact");
     }
   };
@@ -1107,7 +1212,7 @@ footer .wrap { padding-block: 22px; text-align: center; }
     view.innerHTML = "<div class=\"page\">" + html + "</div>";
     buildNav(r.kind === "project" ? "projects" : r.id);
     if (r.kind === "sec" && r.id === "contact") bindContact();
-    if (r.kind === "sec" && r.id === "interests") bindGuitar();
+    if (r.kind === "sec" && r.id === "interests") { bindGuitar(); bindBucket(); }
     if (r.kind === "sec" && r.id === "stats") bindStats();
     if (r.kind === "project") bindDeck(r.p);
     var want = (navKind !== "push" && positions[routeKey()] != null) ? positions[routeKey()] : 0;

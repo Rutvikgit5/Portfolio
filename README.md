@@ -50,3 +50,17 @@ Create a `media` folder, upload your images, then add them to a project in `inde
 
 - Vercel's free Hobby plan is for personal, non-commercial use. A portfolio is fine. If you later use the site to sell something or promote a company, check Vercel's terms.
 - Your repo is public, so anything in `index.html` can be read by anyone. Never paste passwords or private keys into it. The form access key is fine because it can only send messages to your inbox.
+
+## The bucket-list world map
+
+On the Interests page, tapping the plane opens a full-screen world map. The map code is in `media/map/bucket-map.js` and only loads when someone taps the plane, so it does not slow the rest of the site. You never need to edit that file.
+
+To add places, edit `media/map/bucket.json`. Each key is a country name exactly as it appears in the map's "Jump to a country" list (for example "Italy" or "United States of America"). Each place needs a name, a latitude and a longitude, and can have a short note:
+
+    {
+      "Italy": [
+        { "name": "The Dolomites", "lat": 46.4, "lon": 11.9, "note": "Hike the Alta Via 1." }
+      ]
+    }
+
+Tap a country and its places appear as pins, with the list in the panel. Save the file on GitHub and the site updates after Vercel redeploys.
